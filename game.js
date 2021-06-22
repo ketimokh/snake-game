@@ -1,5 +1,5 @@
-import { update as updateSnake, draw as drawSnake, SNAKE_SPEED, getSnakeHead, snakeIntersection} from './snake.js'
-import { update as updateFood, draw as drawFood} from './food.js'
+import { update as updateSnake, draw as drawSnake, SNAKE_SPEED, getSnakeHead, snakeIntersection } from './snake.js'
+import { update as updateFood, draw as drawFood } from './food.js'
 import { outsideGrid } from './grid.js'
 
 
@@ -12,11 +12,11 @@ const gameBoard = document.getElementById('game-board')
 
 
 
-function main (currentTime){
-    if (gameOver){
+function main(currentTime) {
+    if (gameOver) {
         if (confirm('თქვენ წააგეთ თამაში.თამაშის დასაწყებად დააჭირეთ " OK ".')) {
-            if (window.location.href.includes ('ketimokh.github.io/')){
-                window.location = 'https://ketimokh.github.io/snake/';
+            if (window.location.href.includes('ketimokh.github.io/')) {
+                window.location = 'https://ketimokh.github.io/snake-game/';
                 return
             }
             window.location = ' / '
@@ -27,7 +27,7 @@ function main (currentTime){
     window.requestAnimationFrame(main)
     const secondsSinceLastRender = (currentTime - lastRenderTime) / 1000
     if (secondsSinceLastRender < 1 / SNAKE_SPEED) return
-   
+
     lastRenderTime = currentTime
 
 
@@ -38,19 +38,19 @@ function main (currentTime){
 window.requestAnimationFrame(main)
 
 
-function update(){
+function update() {
     updateSnake()
     updateFood()
     checkDeath()
 
 }
 
-function draw(){
+function draw() {
     gameBoard.innerHTML = ''
     drawSnake(gameBoard)
-    drawFood (gameBoard)
+    drawFood(gameBoard)
 }
 
-function checkDeath(){
+function checkDeath() {
     gameOver = outsideGrid(getSnakeHead()) || snakeIntersection()
 }
